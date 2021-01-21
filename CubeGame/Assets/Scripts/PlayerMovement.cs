@@ -5,32 +5,23 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public Rigidbody rb;
-    public float forceForward = 10f;
-    public float forceSide = 1f;
-
-    
-    
-
+    public Transform playerPos;
+    public float playerSpeed = 1f;
+    public float playerAgitity = 2f;
+    float horizontal;
 
     void Start()
     {
-       
+        
     }
 
-    void FixedUpdate() // jesli uzywamy fizyki, dobrą praktyką jest pisanie w FixedUpdate zamiast Update. Poprawia to wydajność
+   
+    void Update()
     {
 
-        rb.AddForce(forceForward, 0f, 0f);
+        horizontal = Input.GetAxis("Horizontal");
+        transform.position += new Vector3(playerSpeed * Time.deltaTime, 0f, -horizontal * playerAgitity * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.A))
-		{
-            rb.AddForce(0f, 0f, forceSide,ForceMode.VelocityChange);
-		}
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            rb.AddForce(0f, 0f, -forceSide, ForceMode.VelocityChange);
-        }
+       
     }
 }

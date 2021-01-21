@@ -5,16 +5,24 @@ using UnityEngine.SceneManagement;
 public class GameSceneController : MonoBehaviour
 {
 
-	public PlayerMovement playerMovement;
+	public PlayerMovementForce playerMovement;
 	public Transform playerPosition;
-	public Text score;
+	public Text scoreText;
+	public int score = 0;
 	bool gameOver = false;
 	public GameObject restartButton;
-	
+
+	private void Start()
+	{
+		Time.timeScale = 1f;
+		//Time.fixedDeltaTime = Time.timeScale;
+	}
 
 	public void GameOver ()
 	{
 		playerMovement.enabled = false;
+		Time.timeScale = 0.2f;
+		Time.fixedDeltaTime = Time.timeScale * 0.01f;
 		gameOver = true;
 		restartButton.SetActive(true);
 	}
@@ -23,7 +31,7 @@ public class GameSceneController : MonoBehaviour
 	{
 		if (!gameOver)
 		{
-			score.text = playerPosition.position.x.ToString("0");
+			scoreText.text = score.ToString();
 		}
 	}
 

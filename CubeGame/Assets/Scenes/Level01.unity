@@ -2509,6 +2509,11 @@ PrefabInstance:
       objectReference: {fileID: 2071859986}
     - target: {fileID: 4270629802722548667, guid: 457dc79faa378014b9c49797dc812455,
         type: 3}
+      propertyPath: forceJump
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270629802722548667, guid: 457dc79faa378014b9c49797dc812455,
+        type: 3}
       propertyPath: forceForward
       value: 2000
       objectReference: {fileID: 0}

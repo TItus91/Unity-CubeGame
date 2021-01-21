@@ -15,7 +15,7 @@ public class GameSceneController : MonoBehaviour
 	private void Start()
 	{
 		Time.timeScale = 1f;
-		//Time.fixedDeltaTime = Time.timeScale;
+		Time.fixedDeltaTime = 0.02f;
 	}
 
 	public void GameOver ()

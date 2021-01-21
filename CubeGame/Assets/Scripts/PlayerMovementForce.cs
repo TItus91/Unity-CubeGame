@@ -8,6 +8,7 @@ public class PlayerMovementForce : MonoBehaviour
     public Rigidbody rb;
     public float forceForward = 10f;
     public float forceSide = 1f;
+    public float forceJump = 1f;
     float horizontal;
     
     
@@ -21,7 +22,7 @@ public class PlayerMovementForce : MonoBehaviour
     void FixedUpdate() // jesli uzywamy fizyki, dobrą praktyką jest pisanie w FixedUpdate zamiast Update. Poprawia to wydajność
     {
 
-        rb.AddForce(forceForward * Time.unscaledDeltaTime, 0f, 0f);
+        rb.AddForce(forceForward * Time.deltaTime, 0f, 0f);
         horizontal = Input.GetAxis("Horizontal");
 
 
@@ -39,6 +40,9 @@ public class PlayerMovementForce : MonoBehaviour
       //  rb.AddForce(0f, 0f, -forceSide * Time.deltaTime*horizontal, ForceMode.VelocityChange);    // Sterowanie z dużą bezwładnością
 
        transform.position += new Vector3(0f, 0f, -horizontal * forceSide * Time.deltaTime);    // Sterowanie bez bezwładności, za to z lekkim nabudowywaniem prędkości horyzontalnej
-        
+       if (Input.GetKeyDown(KeyCode.Space))
+		{
+            rb.AddForce(0f, forceJump, 0f, ForceMode.Impulse);
+		}
     }
 }
